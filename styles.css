@@ -9,7 +9,7 @@
 /*adding a black bg to the body to make things clearer*/
 
 body {
-  background: black;
+  background: #002b36;
 /*  width: 35em;
   margin: 0 auto; */
   font-family: "Lucida Console", Monaco, monospace;

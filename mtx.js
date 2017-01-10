@@ -28,17 +28,27 @@ make_base();
 c.height = window.innerHeight;
 c.width = window.innerWidth;
 
+randChar = [];
 //chinese characters - taken from the unicode charset
 var chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+var halfKana = "｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ";
 var emoji = "❤️♠️♣️♦️♻️⚠️☀️♨️☁️☂️☎️";
 var emojiColor = "☠️☘⚡⛔☢️☣️⏰⌨️⌚⭐⚛☕⚙";
 var ukrain = "АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЬьЮюЯя";
-randChar = [];
-chars = ukrain;
+
+randChar.push(chinese);
+randChar.push(emoji);
+randChar.push(emojiColor);
+randChar.push(ukrain);
+randChar.push(halfKana);
+
+r = Math.floor((Math.random() * randChar.length) + 1);
+chars = randChar[r];
+
 //converting the string into an array of single characters
 chars = chars.split("");
 
-var font_size = 12;
+var font_size = 24;
 var columns = c.width / font_size; //number of columns for the rain
 //an array of drops - one per column
 var drops = [];
@@ -51,7 +61,8 @@ for (var x = 0; x < columns; x++)
 function draw() {
   //Black BG for the canvas
   //translucent BG to show trail
-  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  background = "rgba(0, 0, 0, 0.05)";
+  ctx.fillStyle = background;
   ctx.fillRect(0, 0, c.width, c.height);
 
   ctx.fillStyle = "#0F0"; //green text
