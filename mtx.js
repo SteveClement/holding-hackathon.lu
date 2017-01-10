@@ -1,3 +1,6 @@
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+
 var emojiSupported = (function() {
   var node = document.createElement('canvas');
   if (!node.getContext || !node.getContext('2d') ||
@@ -9,8 +12,17 @@ var emojiSupported = (function() {
   ctx.fillText('\ud83d\ude03', 0, 0);
   return ctx.getImageData(16, 16, 1, 1).data[0] !== 0;
 })();
-var c = document.getElementById("c");
-var ctx = c.getContext("2d");
+
+function make_base()
+{
+  base_image = new Image();
+  base_image.src = 'hackathon.png';
+  base_image.onload = function(){
+    ctx.drawImage(base_image, c.width/2, c.height/2);
+  }
+}
+
+make_base();
 
 //making the canvas full screen
 c.height = window.innerHeight;
@@ -22,7 +34,7 @@ var emoji = "❤️♠️♣️♦️♻️⚠️☀️♨️☁️☂️☎️"
 var emojiColor = "☠️☘⚡⛔☢️☣️⏰⌨️⌚⭐⚛☕⚙";
 var ukrain = "АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЬьЮюЯя";
 randChar = [];
-chars = emoji;
+chars = ukrain;
 //converting the string into an array of single characters
 chars = chars.split("");
 
