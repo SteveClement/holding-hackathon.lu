@@ -18,35 +18,52 @@ function make_base()
   base_image = new Image();
   base_image.src = 'hackathon.png';
   base_image.onload = function(){
-    ctx.drawImage(base_image, c.width/2, c.height/2);
+    ctx.drawImage(base_image, Math.floor(c.width/3), Math.floor(c.height/3));
+console.log(Math.floor(height/3));
   }
 }
-
-make_base();
 
 //making the canvas full screen
 c.height = window.innerHeight;
 c.width = window.innerWidth;
 
-randChar = [];
-//chinese characters - taken from the unicode charset
-var chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+
+// Show hackathon image
+make_base();
+
 var halfKana = "｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ";
 var emoji = "❤️♠️♣️♦️♻️⚠️☀️♨️☁️☂️☎️";
 var emojiColor = "☠️☘⚡⛔☢️☣️⏰⌨️⌚⭐⚛☕⚙";
-var ukrain = "АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЬьЮюЯя";
+//chinese characters - taken from the unicode charset
+var cn = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+var ua = "АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЬьЮюЯя";
 
-randChar.push(chinese);
+randChar = [];
+randChar.push(halfKana);
 randChar.push(emoji);
 randChar.push(emojiColor);
-randChar.push(ukrain);
-randChar.push(halfKana);
+randChar.push(cn);
+randChar.push(ua);
 
-r = Math.floor((Math.random() * randChar.length) + 1);
+r = Math.floor((Math.random() * randChar.length) );
 chars = randChar[r];
 
 //converting the string into an array of single characters
-chars = chars.split("");
+try {
+    chars = chars.split("");
+} catch(e) {
+    console.log(e instanceof TypeError); // true
+    console.log(e.message);              // "null has no properties"
+    console.log(e.name);                 // "TypeError"
+    console.log(e.fileName);             // "Scratchpad/1"
+    console.log(e.lineNumber);           // 2
+    console.log(e.columnNumber);         // 2
+    console.log(e.stack);                // "@Scratchpad/2:2:3\n"
+    console.log(r);
+}
 
 var font_size = 24;
 var columns = c.width / font_size; //number of columns for the rain
