@@ -1,18 +1,22 @@
-<canvas id="myCanvas" width="500" height="200" style="border:1px solid #c3c3c3;">
-Your browser does not support the HTML5 canvas tag.
+<!-- <canvas id="myCanvas" width="500" height="200" style="border:1px solid #c3c3c3;"> -->
+<canvas id="myCanvas">
+    Your browser does not support the HTML5 canvas tag.
 </canvas>
 <script>
     var YPositions= Array(30).join(0).split('');
     var c=document.getElementById("myCanvas");
+    //making the canvas full screen
+    c.height = window.innerHeight;
+    c.width = window.innerWidth;
     var ctx=c.getContext("2d");
     var draw=function(){
         ctx.fillStyle='rgba(0,0,0,.05)';
-        ctx.fillRect(0,0,500,500);
+        ctx.fillRect(0,0,c.height,c.width);
         ctx.fillStyle="#0f0";
         YPositions.map(function(y,index){
             x=(index*10)+10;
             ctx.fillText('a', x, y);
-            if(y>100)
+            if(y>c.height)
             {
                 YPositions[index]=0;
             }
